@@ -2,11 +2,11 @@
 <!-- template w/ the app form -->
 <template>
   <div id="app">
-    <input-box :members="members" @filterData="showMembers" />
-    <filtered-list :members="members"
-    :teamName = "teamName"
-    :showRole  = "showRole"
-    @join-team="joinTeam" />
+    <navigation />
+    <routerView :members="members"
+      :teamName = "teamName"
+      :showRole  = "showRole"
+      @join-team="joinTeam" />
   </div>
 </template>
 <!-- script w methods needed -->
@@ -14,6 +14,7 @@
 
 import InputBox from './components/InputBox.vue';
 import FilteredList from './components/FilteredList.vue';
+import Navigation from './components/Navigation.vue';
 
 
 //begin exporting all information
@@ -129,6 +130,7 @@ export default {
   components: {
   'input-box': InputBox,
   'filtered-list' : FilteredList,
+  'navigation': Navigation
 },
 
   methods: {
