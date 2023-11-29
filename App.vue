@@ -1,85 +1,151 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<!-- app.vue -->
+<!-- template w/ the app form -->
+<template>
+  <div id="app">
+    <input-box :members="members" @filterData="showMembers" />
+    <filtered-list :members="members"
+    :teamName = "teamName"
+    :showRole  = "showRole"
+    @join-team="joinTeam" />
+  </div>
+</template>
+<!-- script w methods needed -->
+<script>
+
+import InputBox from './components/InputBox.vue';
+import FilteredList from './components/FilteredList.vue';
+
+
+//begin exporting all information
+export default {
+  data() {
+      return {
+          showRole: '',
+          teamName: '',
+          //members arr w/ information provided
+          members: [
+              {
+                  id: 1,
+                  name: "Chandler Bing",
+                  phone: "123 123 1234",
+                  email: "cBing@gmail.com",
+                  role: 'Developer',
+                  team: '',
+              },
+              {
+                  id: 2,
+                  name: "Joey Tribbiani",
+                  phone: "321 321 4321",
+                  email: "jtribby@gmail.com",
+                  role: 'UI/UX',
+                  team: '',
+              },
+              {
+                  id: 3,
+                  name: "Ross Geller",
+                  phone: "222 333 4444",
+                  email: "rgeller@gmail.com",
+                  role: 'Developer',
+                  team: '',
+              },
+              {
+                  id: 4,
+                  name: "Monica Bing",
+                  phone: "123 123 1235",
+                  email: "mbing@gmail.com",
+                  role: 'Designer',
+                  team: '',
+              },
+              {
+                  id: 5,
+                  name: "Rachel Green",
+                  phone: "876 345 1678",
+                  email: "rgreen@gmail.com",
+                  role: 'UI/UX',
+                  team: '',
+              },
+              {
+                  id: 6,
+                  name: "Phoebe Buffay",
+                  phone: "678 908 5686",
+                  email: "pbuff@gmail.com",
+                  role: 'UI/UX',
+                  team: '',
+              },
+              {
+                  id: 7,
+                  name: "Stacy Boling",
+                  phone: "345 679 4212",
+                  email: "sBoling@gmail.com",
+                  role: 'Designer',
+                  team: '',
+              },
+              {
+                  id: 8,
+                  name: "Jake Trimult",
+                  phone: "443 665 7888",
+                  email: "jtrim@gmail.com",
+                  role: 'Developer',
+                  team: '',
+              },
+              {
+                  id: 9,
+                  name: "Rose Greathouse",
+                  phone: "345 567 9087",
+                  email: "rgreat@gmail.com",
+                  role: 'UI/UX',
+                  team: '',
+              },
+              {
+                  id: 10,
+                  name: "Mindy Kellum",
+                  phone: "555 666 7777",
+                  email: "mKellum@gmail.com",
+                  role: 'UI/UX',
+                  team: '',
+              },
+              {
+                  id: 11,
+                  name: "Sarah Miller",
+                  phone: "987 654 1234",
+                  email: "smiller@gmail.com",
+                  role: 'Developer',
+                  team: '',
+              },
+              {
+                  id: 12,
+                  name: "Caroline Bender",
+                  phone: "111 222 3456",
+                  email: "cBend@gmail.com",
+                  role: 'Designer',
+                  team: '',
+              },
+          ],
+          //empty arr
+          teamList: []
+      };
+  },
+
+  components: {
+  'input-box': InputBox,
+  'filtered-list' : FilteredList,
+},
+
+  methods: {
+      showMembers(name, role) {
+          this.teamName = name;
+          this.showRole = role;
+      },
+      joinTeam(id, team) {
+          this.$emit('join-team', id, team);
+      }
+  },
+}
 </script>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
-</template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+<!-- simple style to change font -->
+<style>
+#app {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 </style>
