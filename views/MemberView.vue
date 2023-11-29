@@ -1,0 +1,1 @@
+<!-- member view (default page + member page) -->
