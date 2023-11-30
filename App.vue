@@ -2,18 +2,15 @@
 <!-- template w/ the app form -->
 <template>
   <div id="app">
-    <navigation />
-    <routerView :members="members"
-      :teamName = "teamName"
-      :showRole  = "showRole"
-      @join-team="joinTeam" />
+    <Navigation></Navigation>
+    <RouterView 
+:members="members" 
+:teamList="teamList" 
+@joinTeam="joinTeam"/>
   </div>
 </template>
 <!-- script w methods needed -->
 <script>
-
-import InputBox from './components/InputBox.vue';
-import FilteredList from './components/FilteredList.vue';
 import Navigation from './components/Navigation.vue';
 
 
@@ -128,9 +125,9 @@ export default {
   },
 
   components: {
-  'input-box': InputBox,
-  'filtered-list' : FilteredList,
-  'navigation': Navigation
+//   'input-box': InputBox,
+//   'filtered-list' : FilteredList,
+  Navigation
 },
 
   methods: {
